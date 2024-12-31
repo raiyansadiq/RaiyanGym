@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Plans - Raiyan Gym</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        /* General Styles */
+       
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/membership">Membership Plans</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="fade-in">Choose Your Membership Plan</h1>
+
+    <div class="card-container fade-in">
+        <div class="card">
+            <h2>Basic Plan</h2>
+            <p>$20/month</p>
+            <p>Access to gym equipment during working hours.</p>
+            <button onclick="selectPlan('Basic Plan')">Select Plan</button>
+        </div>
+        <div class="card">
+            <h2>Standard Plan</h2>
+            <p>$40/month</p>
+            <p>Includes gym access + 5 group classes/month.</p>
+            <button onclick="selectPlan('Standard Plan')">Select Plan</button>
+        </div>
+        <div class="card">
+            <h2>Premium Plan</h2>
+            <p>$60/month</p>
+            <p>All-inclusive access + personal trainer support.</p>
+            <button onclick="selectPlan('Premium Plan')">Select Plan</button>
+        </div>
+        <div class="card">
+            <h2>Family Plan</h2>
+            <p>$100/month</p>
+            <p>Access for up to 4 family members + group classes.</p>
+            <button onclick="selectPlan('Family Plan')">Select Plan</button>
+        </div>
+        <div class="card">
+            <h2>Student Plan</h2>
+            <p>$30/month</p>
+            <p>Discounted plan for students with valid ID.</p>
+            <button onclick="selectPlan('Student Plan')">Select Plan</button>
+        </div>
+    </div>
+
+    <div class="form-container fade-in">
+        <h2>Register for a Plan</h2>
+        <form id="registrationForm" action="/register" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Choose a password" required>
+            
+            <label for="plan">Selected Plan</label>
+            <input type="text" id="plan" name="plan" placeholder="Choose a plan from above" readonly required>
+            
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Raiyan Gym | Contact Us: contact@raiyangym.com</p>
+    </footer>
+
+    <script>
+        function selectPlan(planName) {
+            document.getElementById('plan').value = planName;
+            window.scrollTo({
+                top: document.querySelector('.form-container').offsetTop,
+                behavior: 'smooth'
+            });
+        }
+
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const plan = document.getElementById('plan').value;
+
+            if (name && plan) {
+                alert(`Thank you for registering, ${name}! You have selected the ${plan}.`);
+            } else {
+                alert("Please complete all fields before submitting.");
+            }
+
+            document.getElementById('registrationForm').reset();
+        }
+    </script>
+</body>
+</html>
